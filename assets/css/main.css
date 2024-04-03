@@ -33,6 +33,10 @@ body {
 	line-height: 1;
 }
 
+li {
+	text-align: left;
+}
+
 ol, ul {
 	list-style: none;
 }
