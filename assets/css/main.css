@@ -1,11 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
 
-/*
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -219,6 +214,7 @@ input, select, textarea {
 	}
 
 	h4 {
+		margin-top: 0;
 		font-size: 0.8rem;
 	}
 
@@ -260,6 +256,7 @@ input, select, textarea {
 		border-left: solid 4px #ffffff;
 		font-style: italic;
 		margin: 0 0 2rem 0;
+		margin-top: 0;
 		padding: 0.5rem 0 0.5rem 2rem;
 	}
 
