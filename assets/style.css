@@ -475,3 +475,32 @@ h1{
 p.lead{
   font-size: 16.5px;
 }
+
+.vision-panel{
+  border-radius: var(--radius);
+  border:1px solid rgba(255,255,255,.12);
+  padding:18px;
+  background:
+    radial-gradient(900px 260px at 60% 0%, rgba(130,170,255,.16), transparent 55%),
+    radial-gradient(700px 260px at 20% 10%, rgba(120,255,210,.12), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  box-shadow: 0 0 34px rgba(120,255,210,.10);
+}
+.vp-title{
+  font-family: var(--mono);
+  color: rgba(255,255,255,.70);
+  text-transform: uppercase;
+  letter-spacing: .9px;
+  font-size: 12px;
+}
+.vp-text{
+  margin-top:10px;
+  color: rgba(255,255,255,.82);
+  line-height: 1.6;
+}
+.vp-sub{
+  margin-top:14px;
+  font-family: var(--mono);
+  color: rgba(255,255,255,.58);
+  font-size: 12px;
+}
