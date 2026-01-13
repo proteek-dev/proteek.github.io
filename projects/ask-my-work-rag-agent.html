@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ask My Work (RAG) // Proteek</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <div class="brand"><span class="badge-dot"></span><div><div>PROTEEK // AI SYSTEMS</div><small>Case study</small></div></div>
+      <div class="nav-links">
+        <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../lab.html">Lab</a><a href="../about.html">About</a><a href="../contact.html">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn" href="#" data-open-palette="1">Command <span class="kbd">⌘K</span></a>
+        <a class="btn primary" href="../assets/Proteek_Sanyal_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="h-eyebrow">PROJECT</div>
+      <h1 style="margin-top:10px">Ask My Work (RAG Portfolio Agent)</h1>
+      <p class="lead">A retrieval-based assistant that answers questions about my projects, skills, and impact with grounded summaries.</p>
+      <div class="row" style="margin-top:12px">
+        <span class="chip">Impact: recruiter Q&A in seconds</span>
+        <span class="chip">Role: Owner</span>
+        <span class="chip">Stack: RAG · Next.js · Vector DB</span>
+      </div>
+    </div>
+
+    <div class="section card soft">
+      <h2>The Problem</h2>
+      <p class="lead">Recruiters scan fast. I needed a way for anyone to query my work like a product—instantly and accurately.</p>
+    </div>
+
+    <div class="section card soft">
+      <h2>Constraints</h2>
+      <div class="row">
+        <span class="chip">Grounded answers (avoid hallucinations)</span>
+        <span class="chip">Fast UX (streamed responses)</span>
+        <span class="chip">Simple content management</span>
+      </div>
+    </div>
+
+    <div class="section card soft">
+      <h2>Approach</h2>
+      <p class="lead">Index case studies + resume text → embed → retrieve top chunks → generate response with citations (optional).</p>
+      <div class="row" style="margin-top:12px">
+        <span class="chip">Chunking strategy</span>
+        <span class="chip">Retrieval evaluation</span>
+        <span class="chip">Fallback prompts</span>
+      </div>
+    </div>
+
+    <div class="section card soft">
+      <h2>Results</h2>
+      <div class="row">
+        <span class="chip">Time-to-answer: &lt; 5s</span>
+        <span class="chip">Lower recruiter friction</span>
+        <span class="chip">AI-native brand signal</span>
+      </div>
+    </div>
+
+    <div class="section card soft">
+      <h2>Next Improvements</h2>
+      <div class="row">
+        <span class="chip">Better eval set + metrics</span>
+        <span class="chip">Citations UI</span>
+        <span class="chip">Multimodal attachments</span>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <a class="link" href="../projects.html">← Back to projects</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>© Proteek Sanyal</div>
+      <div><a class="link" href="#" data-open-palette="1">⌘K</a></div>
+    </div>
+  </div>
+
+  <div id="pal" class="pal">
+    <div class="palbox">
+      <div class="palhead"><input id="palInput" placeholder="Search projects, pages… (Esc to close)" /></div>
+      <div id="palList" class="pallist"></div>
+    </div>
+  </div>
+
+  <script src="../assets/script.js"></script>
+</body>
+</html>
