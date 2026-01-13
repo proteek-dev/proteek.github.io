@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proteek // AI Systems</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <!-- Ambient background layers -->
+  <div class="bg-aurora"></div>
+  <div class="bg-noise"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <canvas id="starfield" class="starfield"></canvas>
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="badge-dot"></span>
+        <div>
+          <div>PROTEEK <span style="opacity:.7">//</span> AI SYSTEMS</div>
+          <small>Data · AI · Automation · Analytics</small>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="looker.html" data-mode="looker">Looker</a>
+        <a href="recruiter.html" data-mode="recruiter">Recruiter</a>
+        <a href="developer.html" data-mode="developer">Developer</a>
+        <a href="persona.html" data-mode="persona">My Persona</a>
+        <a href="lab.html" data-mode="developer">Lab</a>
+        <a href="contact.html" data-mode="recruiter">Contact</a>
+      </div>
+
+
+      <div class="nav-actions">
+        <a class="btn" href="#" data-open-palette="1">Command <span class="kbd">⌘K</span></a>
+        <a class="btn primary" href="assets/Proteek_Sanyal_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="card" data-animate="fade-up">
+        <div class="h-eyebrow">LOOKER MODE</div>
+        <h1 class="reveal" data-animate="reveal">Hi, I’m Proteek — I build AI + data systems that feel like products.</h1>
+        <p class="lead" data-animate="fade-up" data-delay="120">
+            I focus on automation, reliable pipelines, and AI-native experiences (RAG, evaluation, and analytics storytelling).
+        </p>
+
+        <div class="row" data-animate="fade-up" data-delay="220">
+            <a class="btn primary" href="recruiter.html" data-mode="recruiter">Recruiter view →</a>
+            <a class="btn" href="developer.html" data-mode="developer">Developer view →</a>
+            <a class="btn" href="contact.html" data-mode="recruiter">Contact</a>
+        </div>
+
+        <div class="hero-media" data-animate="fade-up" data-delay="260">
+            <img src="assets/hero.jpg" alt="Futuristic AI visual" loading="lazy" />
+            <div class="hero-media-overlay"></div>
+            <div class="hero-caption">
+            <span class="chip">AI Systems</span>
+            <span class="chip">Automation</span>
+            <span class="chip">Analytics</span>
+            </div>
+        </div>
+        </div>
+
+        <div class="section card soft" data-animate="fade-up">
+        <h2>What I do</h2>
+        <div class="grid">
+            <div class="item"><div class="t">AI + RAG</div><div class="s">RAG apps, retrieval evaluation, grounded outputs.</div></div>
+            <div class="item"><div class="t">Automation</div><div class="s">Hands-free reporting, resilient pipelines, quality checks.</div></div>
+            <div class="item"><div class="t">Analytics</div><div class="s">Power BI storytelling, semantic models, performance tuning.</div></div>
+        </div>
+        </div>
+
+        <div class="section">
+        <h2>Featured</h2>
+        <div class="grid">
+            <div class="project" data-animate="fade-up">
+            <h3>Ask My Work (RAG Portfolio Agent)</h3>
+            <p>Query my work like a product — fast answers grounded in my projects.</p>
+            <div class="links"><a class="link" href="projects/ask-my-work-rag-agent.html" data-mode="developer">Case Study →</a></div>
+            </div>
+            <div class="project" data-animate="fade-up" data-delay="120">
+            <h3>Automated Excel Consolidation Engine</h3>
+            <p>SharePoint ingestion → merge → footer/header rules → upload output.</p>
+            <div class="links"><a class="link" href="projects/excel-consolidation-sharepoint-pipeline.html" data-mode="developer">Case Study →</a></div>
+            </div>
+            <div class="project" data-animate="fade-up" data-delay="220">
+            <h3>Fleet Telemetry: Engine Runtime Storyboard</h3>
+            <p>A story-first dashboard for engine runtime, drivers, and anomalies.</p>
+            <div class="links"><a class="link" href="projects/fleet-telemetry-engine-runtime-storyboard.html" data-mode="developer">Case Study →</a></div>
+            </div>
+        </div>
+        </div>
+
+        <div class="footer">
+            <div>© Proteek Sanyal</div>
+            <div><a class="link" href="index.html" data-mode="looker">Mode select</a></div>
+        </div>
+
+  </div>
+
+
+  <!-- Command Palette -->
+  <div id="pal" class="pal">
+    <div class="palbox">
+      <div class="palhead">
+        <input id="palInput" placeholder="Search projects, pages… (Esc to close)" />
+      </div>
+      <div id="palList" class="pallist"></div>
+    </div>
+  </div>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>

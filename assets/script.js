@@ -160,3 +160,34 @@ document.addEventListener("input",(e)=>{
   resize();
   draw();
 })();
+
+/* ---------- Mode-based transitions ---------- */
+(function(){
+  const overlay = document.getElementById("pageTransition");
+
+  // Entry animation on load
+  const enterMode = sessionStorage.getItem("enterMode");
+  if(enterMode){
+    document.body.classList.add("enter-" + enterMode);
+    sessionStorage.removeItem("enterMode");
+  }
+
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-mode]");
+    if(!a) return;
+
+    // allow new tab
+    if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+    e.preventDefault();
+    const mode = a.getAttribute("data-mode");
+    const href = a.getAttribute("href");
+
+    if(!overlay){ location.href = href; return; }
+
+    sessionStorage.setItem("enterMode", mode);
+    overlay.className = "page-transition fx-" + mode;
+    overlay.style.opacity = "1";
+    setTimeout(() => { location.href = href; }, 620);
+  });
+})();
