@@ -271,3 +271,141 @@ p.lead{margin:0; color:var(--muted); font-size:16px; line-height:1.6}
 .palitem .title{font-family: var(--mono); font-size:12px}
 .palitem .desc{color: var(--muted); font-size:13px}
 .palitem .tag{font-family: var(--mono); font-size:11px; color: rgba(120,255,210,.82)}
+
+/* ---------- Futuristic ambience ---------- */
+.bg-aurora{
+  position: fixed;
+  inset: -25%;
+  z-index: -4;
+  filter: blur(40px);
+  opacity: .75;
+  background:
+    radial-gradient(900px 650px at 15% 25%, rgba(120,255,210,.18), transparent 55%),
+    radial-gradient(800px 520px at 85% 20%, rgba(130,170,255,.20), transparent 55%),
+    radial-gradient(900px 700px at 55% 85%, rgba(180,120,255,.16), transparent 60%);
+  animation: auroraMove 14s ease-in-out infinite alternate;
+  transform: translate3d(0,0,0);
+}
+@keyframes auroraMove{
+  0%   { transform: translate(-2%, -1%) scale(1.02); }
+  100% { transform: translate(2%, 1%) scale(1.06); }
+}
+
+.bg-noise{
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  opacity: .10;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  mix-blend-mode: overlay;
+}
+
+.cursor-glow{
+  position: fixed;
+  width: 520px;
+  height: 520px;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: -2;
+  left: -9999px;
+  top: -9999px;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(120,255,210,.18),
+    rgba(130,170,255,.12) 40%,
+    transparent 70%);
+  filter: blur(18px);
+  transform: translate3d(0,0,0);
+  transition: opacity .25s ease;
+  opacity: .9;
+}
+
+/* Optional starfield */
+.starfield{
+  position: fixed;
+  inset: 0;
+  z-index: -5;
+  opacity: .40;
+  pointer-events:none;
+}
+
+/* ---------- Animated neon border sweep on cards ---------- */
+.card, .project, .item{
+  position: relative;
+  overflow: hidden;
+}
+.card:after, .project:after, .item:after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 180deg,
+    transparent 0deg,
+    rgba(120,255,210,.35) 40deg,
+    rgba(130,170,255,.28) 90deg,
+    transparent 140deg,
+    rgba(180,120,255,.22) 210deg,
+    transparent 360deg
+  );
+  opacity: .0;
+  filter: blur(10px);
+  transition: opacity .25s ease;
+  animation: borderSweep 5.6s linear infinite;
+  pointer-events:none;
+}
+@keyframes borderSweep{
+  0%{ transform: rotate(0deg); }
+  100%{ transform: rotate(360deg); }
+}
+.card:hover:after,
+.project:hover:after,
+.item:hover:after{
+  opacity: .28;
+}
+
+/* ---------- Hover shine + tilt feel ---------- */
+.project, .card, .item{
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  will-change: transform;
+}
+.project:hover, .card:hover, .item:hover{
+  transform: translateY(-3px);
+}
+
+/* ---------- Entrance animations (data-animate) ---------- */
+[data-animate]{
+  opacity: 0;
+  transform: translateY(10px);
+}
+[data-animate].in{
+  opacity: 1;
+  transform: translateY(0px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal{
+  position: relative;
+  display: inline-block;
+}
+.reveal:after{
+  content:"";
+  position:absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.0), rgba(0,0,0,.92), rgba(0,0,0,.0));
+  transform: translateX(-120%);
+}
+.reveal.in:after{
+  animation: textSweep .9s ease forwards;
+}
+@keyframes textSweep{
+  to{ transform: translateX(120%); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .bg-aurora{ animation:none; }
+  .card:after, .project:after, .item:after{ animation:none; }
+  .project:hover, .card:hover, .item:hover{ transform:none; }
+  [data-animate]{ opacity: 1; transform:none; }
+}

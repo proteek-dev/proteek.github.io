@@ -70,3 +70,93 @@ document.addEventListener("click",(e)=>{
 document.addEventListener("input",(e)=>{
   if(e.target && e.target.id==="palInput") renderPalette(e.target.value);
 });
+
+/* ---------- Cursor glow follow ---------- */
+(function(){
+  const glow = document.getElementById("cursorGlow");
+  if(!glow) return;
+
+  let x = 0, y = 0, tx = 0, ty = 0;
+  window.addEventListener("mousemove", (e)=>{
+    tx = e.clientX - 260;
+    ty = e.clientY - 260;
+  });
+
+  function tick(){
+    x += (tx - x) * 0.12;
+    y += (ty - y) * 0.12;
+    glow.style.left = x + "px";
+    glow.style.top = y + "px";
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+/* ---------- Reveal on load (stagger) ---------- */
+(function(){
+  const items = Array.from(document.querySelectorAll("[data-animate]"));
+  if(!items.length) return;
+
+  // Apply optional delays
+  items.forEach(el=>{
+    const d = parseInt(el.getAttribute("data-delay") || "0", 10);
+    el.style.transitionDelay = (d/1000) + "s";
+  });
+
+  // Intersection observer
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("in");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  items.forEach(el=> io.observe(el));
+})();
+
+/* ---------- Starfield (optional) ---------- */
+(function(){
+  const canvas = document.getElementById("starfield");
+  if(!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  let w, h, stars;
+
+  function resize(){
+    w = canvas.width = window.innerWidth * devicePixelRatio;
+    h = canvas.height = window.innerHeight * devicePixelRatio;
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+
+    const count = Math.floor((window.innerWidth * window.innerHeight) / 18000);
+    stars = Array.from({length: count}, ()=>({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      z: 0.3 + Math.random()*0.7,
+      r: 0.6 + Math.random()*1.4
+    }));
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    // no hard-coded colors; we use subtle white alpha only
+    for(const s of stars){
+      s.y += 0.15 * s.z * devicePixelRatio;
+      if(s.y > h) { s.y = -10; s.x = Math.random()*w; }
+
+      ctx.globalAlpha = 0.35 * s.z;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r * devicePixelRatio, 0, Math.PI*2);
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener("resize", resize);
+  resize();
+  draw();
+})();
