@@ -486,9 +486,8 @@ body.enter-developer .wrap{ animation: enterDev .5s ease both; }
 body.enter-persona .wrap{ animation: enterPersona .7s ease both; }
 @keyframes enterPersona{ from{opacity:0; filter: blur(6px)} to{opacity:1; filter: blur(0)} }
 
-
 /* =========================
-   CUBE LANDING (corner spread)
+   CUBE LANDING (centered cubes only)
    ========================= */
 
 .landing-wrap{ max-width:none; padding: 36px 18px 44px; }
@@ -497,49 +496,36 @@ body.enter-persona .wrap{ animation: enterPersona .7s ease both; }
   margin: 0 auto;
   min-height: calc(100vh - 120px);
   display: grid;
-  align-content: center;
-  gap: 18px;
+  place-items: center;
 }
 .landing-scene{
   position: relative;
   width: 100%;
-  min-height: min(78vh, 720px);
+  min-height: auto;
 }
-
-/* Headline sits centered between cubes */
-.landing-title.overlay-title{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 2;
-  pointer-events: none;
-  max-width: min(900px, 92vw);
-}
-.landing-title.overlay-title .lead{ margin: 0 auto; max-width: 720px; }
 
 /* Scene container */
 .cube-scene{
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 56px;
+  height: auto;
   width: 100%;
-  height: 100%;
-  z-index: 1;
+  padding: 0 24px;
 }
 
 /* Clickable cube card */
 .cube-wrap{
   all: unset;
   cursor: pointer;
-  border-radius: 22px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
-  padding: 18px 14px 14px;
-  display: grid;
-  place-items: center;
-  gap: 10px;
-  position: relative;
-  overflow: hidden;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+  overflow: visible;
+  transform: none;
   transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease, background .35s ease;
 }
 .cube-wrap:hover{
@@ -551,18 +537,11 @@ body.enter-persona .wrap{ animation: enterPersona .7s ease both; }
 .cube-label{ width:100%; text-align:left; }
 .cube-sub{ color: rgba(255,255,255,.68); font-size: 13px; line-height: 1.4; }
 
-/* Corner spread positions (desktop) */
-.cube-wrap.big{ position:absolute; width: min(280px, 34vw); }
-.cube-wrap.pos-1{ left: 4%;  top: 16%; }
-.cube-wrap.pos-2{ left: 26%; top: 56%; }
-.cube-wrap.pos-3{ right: 26%; top: 52%; }
-.cube-wrap.pos-4{ right: 4%; top: 16%; }
-
 /* 3D cube */
 .cube{
   position: relative;
-  width: 108px;
-  height: 108px;
+  width: 140px;
+  height: 140px;
   transform-style: preserve-3d;
   transform: rotateX(-18deg) rotateY(28deg);
   animation: floatCube 4.6s ease-in-out infinite;
@@ -581,13 +560,13 @@ body.enter-persona .wrap{ animation: enterPersona .7s ease both; }
   box-shadow: 0 0 24px rgba(120,255,210,.08);
   backface-visibility: hidden;
 }
-/* Depth for 108px cube */
-.face.front  { transform: translateZ(54px); }
-.face.back   { transform: rotateY(180deg) translateZ(54px); }
-.face.right  { transform: rotateY(90deg) translateZ(54px); }
-.face.left   { transform: rotateY(-90deg) translateZ(54px); }
-.face.top    { transform: rotateX(90deg) translateZ(54px); }
-.face.bottom { transform: rotateX(-90deg) translateZ(54px); }
+/* Depth for 140px cube */
+.face.front  { transform: translateZ(70px); }
+.face.back   { transform: rotateY(180deg) translateZ(70px); }
+.face.right  { transform: rotateY(90deg) translateZ(70px); }
+.face.left   { transform: rotateY(-90deg) translateZ(70px); }
+.face.top    { transform: rotateX(90deg) translateZ(70px); }
+.face.bottom { transform: rotateX(-90deg) translateZ(70px); }
 
 /* Mode tint */
 .cube-wrap[data-mode="looker"]   .face{ background: rgba(120,255,210,.16); }
@@ -609,55 +588,35 @@ body.enter-persona .wrap{ animation: enterPersona .7s ease both; }
   display: grid;
   place-items: center;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: rgba(255,255,255,.84);
   text-shadow: 0 0 18px rgba(130,170,255,.18);
   pointer-events: none;
-  transform: translateZ(56px);
+  transform: translateZ(72px);
 }
 
-/* Ground shadow */
-.cube-wrap.big:before{
-  content:"";
-  position:absolute;
-  left: 50%;
-  top: 90px;
-  width: 160px;
-  height: 36px;
-  transform: translateX(-50%);
-  background: radial-gradient(closest-side, rgba(0,0,0,.55), transparent 70%);
-  filter: blur(8px);
-  opacity: .45;
-  pointer-events:none;
-}
-
-/* Medium widths: switch earlier to grid to avoid overlap */
-@media(max-width: 1280px){
-  .landing-title.overlay-title{
-    position: relative;
-    left: auto; top: auto;
-    transform: none;
-    text-align: left;
-    pointer-events: auto;
-    margin-bottom: 10px;
-  }
+/* Responsive spacing */
+@media(max-width: 980px){
   .cube-scene{
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    align-content: start;
+    flex-wrap: wrap;
+    gap: 28px;
   }
-  .cube-wrap.big{
-    position: relative;
-    width: 100%;
-    left: auto; right: auto; top: auto;
-  }
+  .cube{ width: 120px; height: 120px; }
+  .face.front  { transform: translateZ(60px); }
+  .face.back   { transform: rotateY(180deg) translateZ(60px); }
+  .face.right  { transform: rotateY(90deg) translateZ(60px); }
+  .face.left   { transform: rotateY(-90deg) translateZ(60px); }
+  .face.top    { transform: rotateX(90deg) translateZ(60px); }
+  .face.bottom { transform: rotateX(-90deg) translateZ(60px); }
+  .cube-text{ transform: translateZ(62px); }
 }
-@media(max-width: 640px){
-  .cube-scene{ grid-template-columns: 1fr; }
+
+@media(max-width: 560px){
+  .cube-scene{
+    gap: 18px;
+  }
 }
 
 /* Portal overlay used on click */
@@ -700,98 +659,4 @@ body.enter-persona .wrap{ animation: enterPersona .7s ease both; }
 @media (prefers-reduced-motion: reduce){
   .cube{ animation: none; }
   .cube-wrap:hover .cube{ transform: rotateX(-18deg) rotateY(28deg); }
-}
-
-/* =========================
-   CENTERED CUBES ONLY (no cards, no headline)
-   ========================= */
-
-/* Make landing area a true center stage */
-.landing-center{
-  min-height: calc(100vh - 120px);
-  display: grid;
-  place-items: center;
-}
-
-/* We don't need the scene height anymore */
-.landing-scene{
-  min-height: auto;
-}
-
-/* Turn cube scene into a centered row */
-.cube-scene{
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 56px !important;
-  height: auto !important;
-  width: 100%;
-  padding: 0 24px;
-}
-
-/* Remove the corner positioning system */
-.cube-wrap.big{
-  position: relative !important;
-  left: auto !important;
-  right: auto !important;
-  top: auto !important;
-  width: auto !important;
-}
-
-/* Remove the rounded rectangle “card” completely */
-.cube-wrap{
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  overflow: visible !important;
-  transform: none;
-}
-
-/* Remove the ground-shadow rectangle too */
-.cube-wrap.big:before{
-  display: none !important;
-}
-
-/* Make cubes larger + more premium */
-.cube{
-  width: 140px !important;
-  height: 140px !important;
-}
-
-/* Update 3D depth to match 140px cube (140/2 = 70px) */
-.face.front  { transform: translateZ(70px) !important; }
-.face.back   { transform: rotateY(180deg) translateZ(70px) !important; }
-.face.right  { transform: rotateY(90deg) translateZ(70px) !important; }
-.face.left   { transform: rotateY(-90deg) translateZ(70px) !important; }
-.face.top    { transform: rotateX(90deg) translateZ(70px) !important; }
-.face.bottom { transform: rotateX(-90deg) translateZ(70px) !important; }
-
-/* Keep the label inside cube visible on the front face */
-.cube-text{
-  transform: translateZ(72px) !important;
-  font-size: 13px !important;
-}
-
-/* Responsive spacing */
-@media(max-width: 980px){
-  .cube-scene{
-    flex-wrap: wrap !important;
-    gap: 28px !important;
-  }
-  .cube{ width: 120px !important; height: 120px !important; }
-  .face.front  { transform: translateZ(60px) !important; }
-  .face.back   { transform: rotateY(180deg) translateZ(60px) !important; }
-  .face.right  { transform: rotateY(90deg) translateZ(60px) !important; }
-  .face.left   { transform: rotateY(-90deg) translateZ(60px) !important; }
-  .face.top    { transform: rotateX(90deg) translateZ(60px) !important; }
-  .face.bottom { transform: rotateX(-90deg) translateZ(60px) !important; }
-  .cube-text{ transform: translateZ(62px) !important; }
-}
-
-@media(max-width: 560px){
-  .cube-scene{
-    gap: 18px !important;
-  }
 }
