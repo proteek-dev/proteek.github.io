@@ -595,3 +595,150 @@ body.enter-developer .wrap{ animation: enterDev .5s ease both; }
 
 body.enter-persona .wrap{ animation: enterPersona .7s ease both; }
 @keyframes enterPersona{ from{opacity:0; filter: blur(6px)} to{opacity:1; filter: blur(0)} }
+
+/* ---------- 3D Cube Selector ---------- */
+.cube-stage{
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+@media(max-width: 980px){ .cube-stage{ grid-template-columns: 1fr 1fr; } }
+@media(max-width: 560px){ .cube-stage{ grid-template-columns: 1fr; } }
+
+.cube-wrap{
+  all: unset;
+  cursor: pointer;
+  border-radius: calc(var(--radius) + 10px);
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  padding: 14px 12px 12px;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease, background .35s ease;
+  transform: translateY(0);
+}
+
+.cube-wrap:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,.24);
+  box-shadow: 0 0 42px rgba(130,170,255,.14);
+  background: rgba(255,255,255,.06);
+}
+
+.cube-label{ width: 100%; }
+.cube-tag{
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .9px;
+  color: rgba(255,255,255,.78);
+  margin-bottom: 4px;
+}
+.cube-sub{
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* --- 3D cube --- */
+.cube{
+  width: 64px;
+  height: 64px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-18deg) rotateY(28deg);
+  animation: floatCube 3.6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Different float timing per cube */
+.cube-wrap:nth-child(1) .cube{ animation-delay: 0s; }
+.cube-wrap:nth-child(2) .cube{ animation-delay: .2s; }
+.cube-wrap:nth-child(3) .cube{ animation-delay: .4s; }
+.cube-wrap:nth-child(4) .cube{ animation-delay: .6s; }
+
+@keyframes floatCube{
+  0%   { transform: translateY(0) rotateX(-18deg) rotateY(28deg); }
+  50%  { transform: translateY(-10px) rotateX(-16deg) rotateY(34deg); }
+  100% { transform: translateY(0) rotateX(-18deg) rotateY(28deg); }
+}
+
+.face{
+  position: absolute;
+  inset: 0;
+  background: rgba(130,170,255,.18);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 0 24px rgba(120,255,210,.08);
+  backface-visibility: hidden;
+}
+
+/* Cube face placements */
+.face.front  { transform: translateZ(32px); }
+.face.back   { transform: rotateY(180deg) translateZ(32px); }
+.face.right  { transform: rotateY(90deg) translateZ(32px); }
+.face.left   { transform: rotateY(-90deg) translateZ(32px); }
+.face.top    { transform: rotateX(90deg) translateZ(32px); }
+.face.bottom { transform: rotateX(-90deg) translateZ(32px); }
+
+/* Mode-specific cube tint (no harsh neon, "visionary") */
+.cube-wrap[data-mode="looker"]   .face{ background: rgba(120,255,210,.16); }
+.cube-wrap[data-mode="recruiter"].face{ background: rgba(130,170,255,.18); }
+.cube-wrap[data-mode="developer"].face{ background: rgba(255,255,255,.10); }
+.cube-wrap[data-mode="persona"]  .face{ background: rgba(180,120,255,.16); }
+
+/* Hover tilt: adds “alive” feel */
+.cube-wrap:hover .cube{
+  animation-play-state: paused;
+  transform: rotateX(-14deg) rotateY(40deg) translateY(-6px);
+  transition: transform .35s ease;
+}
+
+/* ---------- Click expand "portal" ---------- */
+.cube-portal{
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(.98);
+  background:
+    radial-gradient(900px 600px at 50% 35%, rgba(120,255,210,.20), transparent 62%),
+    radial-gradient(900px 650px at 55% 55%, rgba(130,170,255,.22), transparent 62%),
+    linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.92));
+  backdrop-filter: blur(10px);
+}
+
+.cube-portal.show{
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity .45s ease, transform .45s ease;
+}
+
+/* A “burst” ring from the clicked cube position */
+.cube-burst{
+  position: fixed;
+  width: 20px; height: 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 0 40px rgba(130,170,255,.18);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: .9;
+  animation: burst .55s ease forwards;
+}
+
+@keyframes burst{
+  to{
+    transform: translate(-50%, -50%) scale(38);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .cube{ animation: none; }
+  .cube-wrap:hover .cube{ transform: rotateX(-18deg) rotateY(28deg); }
+}

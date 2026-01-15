@@ -191,3 +191,50 @@ document.addEventListener("input",(e)=>{
     setTimeout(() => { location.href = href; }, 620);
   });
 })();
+
+/* ---------- Cube expand navigation ---------- */
+(function(){
+  const portal = document.getElementById("cubePortal");
+  if(!portal) return;
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".cube-wrap[data-href]");
+    if(!btn) return;
+
+    // allow new tab
+    if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+    const href = btn.getAttribute("data-href");
+    const mode = btn.getAttribute("data-mode") || "looker";
+
+    // store entry mode for next page animation (if you already use this)
+    sessionStorage.setItem("enterMode", mode);
+
+    // burst from cube center
+    const r = btn.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
+
+    const burst = document.createElement("div");
+    burst.className = "cube-burst";
+    burst.style.left = cx + "px";
+    burst.style.top = cy + "px";
+    document.body.appendChild(burst);
+
+    // show portal
+    portal.classList.add("show");
+
+    // also trigger your existing page transition overlay if present
+    const pageOverlay = document.getElementById("pageTransition");
+    if(pageOverlay){
+      pageOverlay.className = "page-transition fx-" + mode;
+      pageOverlay.style.opacity = "1";
+    }
+
+    // navigate after animation
+    setTimeout(() => { location.href = href; }, 520);
+
+    // cleanup burst
+    setTimeout(() => burst.remove(), 650);
+  });
+})();
