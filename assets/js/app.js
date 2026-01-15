@@ -1,63 +1,84 @@
-(function () {
+// Cursor glow
+(() => {
   const glow = document.getElementById("cursorGlow");
-  if (glow) {
-    window.addEventListener("pointermove", (e) => {
-      glow.style.left = e.clientX + "px";
-      glow.style.top = e.clientY + "px";
-    }, { passive: true });
-  }
+  if(!glow) return;
+  window.addEventListener("mousemove",(e)=>{
+    glow.style.left = e.clientX + "px";
+    glow.style.top  = e.clientY + "px";
+  }, {passive:true});
+})();
 
-  // Starfield (lightweight)
+// Starfield canvas (subtle)
+(() => {
   const canvas = document.getElementById("starfield");
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d", { alpha: true });
+  if(!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let w=0,h=0,stars=[];
 
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const resize = () => {
+    const dpr = window.devicePixelRatio || 1;
+    w = canvas.width  = Math.floor(window.innerWidth * dpr);
+    h = canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width  = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
 
-  function resize() {
-    const dpr = Math.min(2, window.devicePixelRatio || 1);
-    canvas.width = Math.floor(window.innerWidth * dpr);
-    canvas.height = Math.floor(window.innerHeight * dpr);
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  window.addEventListener("resize", resize);
-  resize();
+    const count = Math.floor((window.innerWidth * window.innerHeight) / 17000);
+    stars = Array.from({length: count}, () => ({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      z: 0.35 + Math.random()*0.75,
+      r: 0.6 + Math.random()*1.6,
+      tw: Math.random()*Math.PI*2
+    }));
+  };
 
-  const stars = [];
-  const N = prefersReduced ? 120 : 220;
+  const draw = () => {
+    ctx.clearRect(0,0,w,h);
+    const dpr = window.devicePixelRatio || 1;
 
-  for (let i = 0; i < N; i++) {
-    stars.push({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      r: Math.random() * 1.3 + 0.2,
-      a: Math.random() * 0.6 + 0.15,
-      v: (Math.random() * 0.22 + 0.05) * (Math.random() > 0.5 ? 1 : -1)
-    });
-  }
+    for(const s of stars){
+      s.y += 0.12 * s.z * dpr;
+      s.tw += 0.02;
+      if(s.y > h){ s.y = -10; s.x = Math.random()*w; }
 
-  let t = 0;
-  function tick() {
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    t += 0.01;
-
-    for (const s of stars) {
-      s.y += s.v;
-      if (s.y < -10) s.y = window.innerHeight + 10;
-      if (s.y > window.innerHeight + 10) s.y = -10;
-
-      const tw = Math.sin(t + s.x * 0.01) * 0.15;
-      ctx.globalAlpha = Math.max(0, Math.min(1, s.a + tw));
+      const twinkle = 0.25 + 0.2*Math.sin(s.tw);
+      ctx.globalAlpha = twinkle * 0.6 * s.z;
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = "white";
+      ctx.arc(s.x, s.y, s.r * dpr, 0, Math.PI*2);
+      ctx.fillStyle = "#ffffff";
       ctx.fill();
     }
-
     ctx.globalAlpha = 1;
-    if (!prefersReduced) requestAnimationFrame(tick);
+    requestAnimationFrame(draw);
+  };
+
+  window.addEventListener("resize", resize, {passive:true});
+  resize(); draw();
+})();
+
+// Link transitions: any <a data-mode="...">
+(() => {
+  const overlay = document.getElementById("pageTransition");
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-mode]");
+    if(!a) return;
+    if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+    e.preventDefault();
+    const mode = a.getAttribute("data-mode") || "looker";
+    const href = a.getAttribute("href");
+    if(!overlay){ location.href = href; return; }
+
+    sessionStorage.setItem("enterMode", mode);
+    overlay.className = "page-transition fx-" + mode;
+    overlay.style.opacity = "1";
+    setTimeout(() => location.href = href, 680);
+  });
+
+  // On load: set body mode entry class if needed
+  const enterMode = sessionStorage.getItem("enterMode");
+  if(enterMode){
+    document.body.setAttribute("data-enter", enterMode);
+    sessionStorage.removeItem("enterMode");
   }
-  tick();
 })();
