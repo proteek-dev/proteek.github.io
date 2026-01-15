@@ -3,94 +3,107 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Proteek // AI Systems</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Proteek // Lens Portal</title>
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/index.css" />
 </head>
-<body>
-  <!-- Ambient background layers -->
+<body class="theme theme-index">
+  <!-- cinematic layers -->
   <div class="bg-aurora"></div>
   <div class="bg-noise"></div>
+  <div class="vignette"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
-  <canvas id="starfield" class="starfield"></canvas>
-  <nav>
-    <div class="nav-inner">
-      <a class="brand brand-link" href="index.html" data-mode="looker">
-        <span class="badge-dot"></span>
-        <div>
-          <div>PROTEEK <span style="opacity:.7">//</span> PORTFOLIO</div>
-          <small>Data · AI · Automation · Analytics</small>
-        </div>
-      </a>
+  <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
 
-      <div class="nav-actions">
-        <a class="btn" href="#" data-open-palette="1">Command <span class="kbd">⌘K</span></a>
-        <a class="btn primary" href="assets/Proteek_Sanyal_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-      </div>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Home">
+      <span class="brand-dot"></span>
+      <span class="brand-title">PROTEEK <span class="muted">//</span> PORTFOLIO</span>
+      <span class="brand-sub">Data · AI · Automation · Analytics</span>
+    </a>
+
+    <div class="top-actions">
+      <a class="btn" href="assets/DataAnaylst_Applicant_Proteek.pdf" target="_blank" rel="noopener">Resume</a>
     </div>
-  </nav>
+  </header>
 
-  <div class="wrap">
-    <div class="wrap landing-wrap">
-      <div class="landing-center">
-        <div class="landing-title" data-animate="fade-up"></div>
-
-        <!-- FULLSCREEN CUBES -->
-        <div class="cube-scene" data-animate="fade-up" data-delay="220">
-          <button class="cube-wrap big pos-1" data-mode="looker" data-href="looker.html" aria-label="Looker view">
-            <div class="cube">
-              <div class="face front"></div><div class="face back"></div><div class="face right"></div>
-              <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
-              <div class="cube-text">LOOKER</div>
-            </div>
-          </button>
-
-          <button class="cube-wrap big pos-2" data-mode="recruiter" data-href="recruiter.html" aria-label="Recruiter view">
-            <div class="cube">
-              <div class="cube">
-              <div class="face front"></div><div class="face back"></div><div class="face right"></div>
-              <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
-              <div class="cube-text">RECRUITER</div>
-            </div>
-          </button>
-
-          <button class="cube-wrap big pos-3" data-mode="developer" data-href="developer.html" aria-label="Developer view">
-            <div class="cube">
-              <div class="cube">
-              <div class="face front"></div><div class="face back"></div><div class="face right"></div>
-              <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
-              <div class="cube-text">DEVELOPER</div>
-            </div>
-          </button>
-
-          <button class="cube-wrap big pos-4" data-mode="persona" data-href="persona.html" aria-label="My Persona view">
-            <div class="cube">
-              <div class="cube">
-              <div class="face front"></div><div class="face back"></div><div class="face right"></div>
-              <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
-              <div class="cube-text">MY PERSONA</div>
-            </div>
-          </button>
-        </div>
-
+  <main class="portal" aria-label="Choose a lens">
+    <div class="portal-center">
+      <div class="portal-title">
+        <div class="kicker">CHOOSE A LENS</div>
+        <h1>Enter my work like a system.</h1>
+        <p>Four modes. Four narratives. One person.</p>
       </div>
 
-      <!-- Portal overlay used for smooth expand -->
-      <div class="cube-portal" id="cubePortal" aria-hidden="true"></div>
-    </div>
+      <div class="lens-grid">
+        <!-- LOOKER -->
+        <button class="lens" data-mode="looker" data-href="looker.html" aria-label="Looker lens">
+          <div class="cube" aria-hidden="true">
+            <div class="face front"></div><div class="face back"></div><div class="face right"></div>
+            <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
+            <div class="cube-text">LOOKER</div>
+          </div>
+          <div class="lens-meta">
+            <div class="lens-name">Orientation</div>
+            <div class="lens-desc">Who I am · what I do</div>
+          </div>
+        </button>
 
-  </div>
+        <!-- RECRUITER -->
+        <button class="lens" data-mode="recruiter" data-href="recruiter.html" aria-label="Recruiter lens">
+          <div class="cube" aria-hidden="true">
+            <div class="face front"></div><div class="face back"></div><div class="face right"></div>
+            <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
+            <div class="cube-text">RECRUITER</div>
+          </div>
+          <div class="lens-meta">
+            <div class="lens-name">Signal</div>
+            <div class="lens-desc">Skills · impact · credibility</div>
+          </div>
+        </button>
 
+        <!-- DEVELOPER -->
+        <button class="lens" data-mode="developer" data-href="developer.html" aria-label="Developer lens">
+          <div class="cube" aria-hidden="true">
+            <div class="face front"></div><div class="face back"></div><div class="face right"></div>
+            <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
+            <div class="cube-text">DEVELOPER</div>
+          </div>
+          <div class="lens-meta">
+            <div class="lens-name">Systems</div>
+            <div class="lens-desc">Architecture · tradeoffs</div>
+          </div>
+        </button>
 
-  <!-- Command Palette -->
-  <div id="pal" class="pal">
-    <div class="palbox">
-      <div class="palhead">
-        <input id="palInput" placeholder="Search projects, pages… (Esc to close)" />
+        <!-- PERSONA -->
+        <button class="lens" data-mode="persona" data-href="persona.html" aria-label="Persona lens">
+          <div class="cube" aria-hidden="true">
+            <div class="face front"></div><div class="face back"></div><div class="face right"></div>
+            <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
+            <div class="cube-text">PERSONA</div>
+          </div>
+          <div class="lens-meta">
+            <div class="lens-name">Future</div>
+            <div class="lens-desc">AI self · interaction</div>
+          </div>
+        </button>
       </div>
-      <div id="palList" class="pallist"></div>
-    </div>
-  </div>
 
-  <script src="assets/script.js"></script>
+      <div class="portal-foot">
+        <a class="mini" href="mailto:proteeksanyal1994@gmail.com">proteeksanyal1994@gmail.com</a>
+        <span class="dot">•</span>
+        <a class="mini" href="https://github.com/proteek-dev" target="_blank" rel="noopener">GitHub</a>
+        <span class="dot">•</span>
+        <a class="mini" href="https://www.linkedin.com/in/proteeksanyal/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- Portal transition overlay -->
+    <div class="portal-warp" id="portalWarp" aria-hidden="true"></div>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/index.js"></script>
 </body>
 </html>

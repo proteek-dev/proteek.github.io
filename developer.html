@@ -3,104 +3,118 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Proteek // AI Systems</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Developer // Proteek</title>
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/mode.css" />
 </head>
-<body>
-  <!-- Ambient background layers -->
+<body class="theme theme-developer" data-mode="developer">
   <div class="bg-aurora"></div>
   <div class="bg-noise"></div>
+  <div class="vignette"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
-  <canvas id="starfield" class="starfield"></canvas>
-  <nav>
-    <div class="nav-inner">
-      <a class="brand brand-link" href="index.html" data-mode="looker">
-        <span class="badge-dot"></span>
-        <div>
-          <div>PROTEEK <span style="opacity:.7">//</span> PORTFOLIO</div>
-          <small>Data · AI · Automation · Analytics</small>
-        </div>
-      </a>
+  <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
 
-      <div class="nav-actions">
-        <a class="btn" href="#" data-open-palette="1">Command <span class="kbd">⌘K</span></a>
-        <a class="btn primary" href="assets/Proteek_Sanyal_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Back to portal">
+      <span class="brand-dot"></span>
+      <span class="brand-title">PROTEEK <span class="muted">//</span> DEVELOPER</span>
+      <span class="brand-sub">Systems thinking</span>
+    </a>
+    <div class="top-actions">
+      <a class="btn" href="looker.html">Looker</a>
+      <a class="btn" href="recruiter.html">Recruiter</a>
+      <a class="btn" href="persona.html">Persona</a>
+      <a class="btn" href="assets/DataAnaylst_Applicant_Proteek.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero compact">
+      <div class="hero-left">
+        <div class="kicker">DEVELOPER VIEW</div>
+        <h1>How I build production systems.</h1>
+        <p class="lead">
+          I prefer simple, measurable architectures: clear interfaces, automated pipelines, and observable deployments.
+        </p>
+        <div class="chips">
+          <span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">REST APIs</span>
+          <span class="chip">AWS · Azure</span><span class="chip">CI/CD</span><span class="chip">Python</span>
+        </div>
       </div>
-    </div>
-  </nav>
+    </section>
 
-    <div class="wrap">
-        <div class="card" data-animate="fade-up">
-            <div class="h-eyebrow">DEVELOPER MODE</div>
-            <h1 class="reveal" data-animate="reveal">Architecture, trade-offs, and build quality.</h1>
-            <p class="lead" data-animate="fade-up" data-delay="120">
-                Projects only. Clean explanations. If you want to build something together, this is the view.
-            </p>
-            <div class="row" data-animate="fade-up" data-delay="220">
-                <a class="btn primary" href="projects.html" data-mode="developer">Projects Index →</a>
-                <a class="btn" href="lab.html" data-mode="developer">Lab →</a>
-                <a class="btn" href="contact.html" data-mode="developer">Build with me</a>
-            </div>
-        </div>
+    <section class="section">
+      <h2>Selected builds</h2>
 
-        <div class="section">
-            <h2>Projects</h2>
-            <div class="grid">
-                <div class="project" data-animate="fade-up">
-                <h3>Ask My Work (RAG Portfolio Agent)</h3>
-                <p>RAG over portfolio content with grounded responses + evaluation-friendly structure.</p>
-                <div class="meta"><span class="chip">RAG</span><span class="chip">Vector DB</span><span class="chip">Streaming UI</span></div>
-                <div class="links">
-                    <a class="link" href="projects/ask-my-work-rag-agent.html" data-mode="developer">Case Study →</a>
-                </div>
-                </div>
+      <div class="grid2">
+        <article class="panel">
+          <h3>User Liveness Detection (Truuth)</h3>
+          <p>
+            Integrated liveness detection into an existing app architecture and deployed scalable microservices via AWS SageMaker.
+            Improved detection accuracy and scalability for concurrency.
+          </p>
+          <div class="chips"><span class="chip">AWS SageMaker</span><span class="chip">Microservices</span></div>
+        </article>
 
-                <div class="project" data-animate="fade-up" data-delay="120">
-                <h3>Automated Excel Consolidation Engine</h3>
-                <p>Sheet mapping + header normalization + footer detection + date stamping + upload.</p>
-                <div class="meta"><span class="chip">Python</span><span class="chip">SharePoint</span><span class="chip">openpyxl</span></div>
-                <div class="links">
-                    <a class="link" href="projects/excel-consolidation-sharepoint-pipeline.html" data-mode="developer">Case Study →</a>
-                </div>
-                </div>
+        <article class="panel">
+          <h3>Medical Image Analysis Platform</h3>
+          <p>
+            CNN-based segmentation/classification/anomaly detection with real-time integration; reduced false positives and improved diagnostic accuracy.
+          </p>
+          <div class="chips"><span class="chip">CNN</span><span class="chip">Docker</span><span class="chip">AWS</span></div>
+        </article>
 
-                <div class="project" data-animate="fade-up" data-delay="220">
-                <h3>Fleet Telemetry: Engine Runtime Storyboard</h3>
-                <p>Story-first BI page: runtime patterns, driver mapping, minimal runtime anomalies.</p>
-                <div class="meta"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">Modeling</span></div>
-                <div class="links">
-                    <a class="link" href="projects/fleet-telemetry-engine-runtime-storyboard.html" data-mode="developer">Case Study →</a>
-                </div>
-                </div>
-            </div>
-        </div>
+        <article class="panel">
+          <h3>Evacuation Risk Assessment</h3>
+          <p>
+            Predictive models using logistic regression/trees/forests across geo + health factors; delivered reports and visualizations for stakeholders.
+          </p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">Reporting</span></div>
+        </article>
 
-            <div class="section card soft" data-animate="fade-up">
-            <h2>Build with me</h2>
-            <p class="lead">If you have a data product, pipeline automation, RAG assistant, or dashboard that needs to be production-ready — I’m open.</p>
-            <div class="row" style="margin-top:12px">
-                <a class="btn primary" href="contact.html" data-mode="developer">Start a conversation</a>
-                <a class="btn" href="recruiter.html" data-mode="recruiter">Recruiter view</a>
-            </div>
-            </div>
-
-            <div class="footer">
-            <div>© Proteek Sanyal</div>
-            <div><a class="link" href="index.html" data-mode="developer">Mode select</a></div>
-            </div>
-    </div>
-
-
-  <!-- Command Palette -->
-  <div id="pal" class="pal">
-    <div class="palbox">
-      <div class="palhead">
-        <input id="palInput" placeholder="Search projects, pages… (Esc to close)" />
+        <article class="panel">
+          <h3>Sentiment Analysis (BERT)</h3>
+          <p>
+            Deployed a BERT sentiment model as a REST API using Docker + Kubernetes for scalable uptime.
+          </p>
+          <div class="chips"><span class="chip">BERT</span><span class="chip">REST</span><span class="chip">K8s</span></div>
+        </article>
       </div>
-      <div id="palList" class="pallist"></div>
-    </div>
-  </div>
+    </section>
 
-  <script src="assets/script.js"></script>
+    <section class="section">
+      <h2>Independent AI projects</h2>
+      <div class="grid2">
+        <div class="panel">
+          <h3>Maternal Health & Early Outbreak Warning</h3>
+          <p>End-to-end predictive pipeline with dashboards for public health monitoring (open-source MVP).</p>
+        </div>
+        <div class="panel">
+          <h3>End-to-End LLM Projects</h3>
+          <p>LangChain + OpenAI + Hugging Face + FAISS walkthrough and best practices.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Build with me</h2>
+      <div class="panel">
+        <p>
+          If you want to build a data/AI product, I can help with architecture, pipelines, deployment, and the “last mile” UX that makes it usable.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:proteeksanyal1994@gmail.com?subject=Build%20with%20me">Email me</a>
+          <a class="btn" href="https://github.com/proteek-dev" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <a class="mini" href="index.html">← Back to portal</a>
+    </footer>
+  </main>
+
+  <script src="assets/js/app.js"></script>
 </body>
 </html>

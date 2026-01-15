@@ -3,110 +3,117 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Proteek // AI Systems</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Recruiter // Proteek</title>
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/mode.css" />
 </head>
-<body>
-  <!-- Ambient background layers -->
+<body class="theme theme-recruiter" data-mode="recruiter">
   <div class="bg-aurora"></div>
   <div class="bg-noise"></div>
+  <div class="vignette"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
-  <canvas id="starfield" class="starfield"></canvas>
-  <nav>
-    <div class="nav-inner">
-      <a class="brand brand-link" href="index.html" data-mode="looker">
-        <span class="badge-dot"></span>
-        <div>
-          <div>PROTEEK <span style="opacity:.7">//</span> PORTFOLIO</div>
-          <small>Data · AI · Automation · Analytics</small>
+  <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Back to portal">
+      <span class="brand-dot"></span>
+      <span class="brand-title">PROTEEK <span class="muted">//</span> RECRUITER</span>
+      <span class="brand-sub">Signal compression</span>
+    </a>
+    <div class="top-actions">
+      <a class="btn" href="looker.html">Looker</a>
+      <a class="btn" href="developer.html">Developer</a>
+      <a class="btn" href="persona.html">Persona</a>
+      <a class="btn" href="assets/DataAnaylst_Applicant_Proteek.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero compact">
+      <div class="hero-left">
+        <div class="kicker">RECRUITER VIEW</div>
+        <h1>Skills. Impact. Credibility.</h1>
+        <p class="lead">
+          Power BI + automation + cloud data/ML delivery. Built analytics and ML systems end-to-end across AU/India roles.
+        </p>
+
+        <div class="hud">
+          <div class="hud-item"><div class="k">Current</div><div class="v">Data Analyst — City of Gold Coast (Jun 2025–Present)</div></div>
+          <div class="hud-item"><div class="k">Core</div><div class="v">Python · SQL · Power BI · Cloud</div></div>
+          <div class="hud-item"><div class="k">Contact</div><div class="v"><a href="mailto:proteeksanyal1994@gmail.com">proteeksanyal1994@gmail.com</a></div></div>
         </div>
-      </a>
-
-      <div class="nav-actions">
-        <a class="btn" href="#" data-open-palette="1">Command <span class="kbd">⌘K</span></a>
-        <a class="btn primary" href="assets/Proteek_Sanyal_Resume.pdf" target="_blank" rel="noopener">Resume</a>
       </div>
-    </div>
-  </nav>
+    </section>
 
-    <div class="wrap">
-        <div class="card" data-animate="fade-up">
-            <div class="h-eyebrow">RECRUITER MODE</div>
-            <h1 class="reveal" data-animate="reveal">Skills, impact, and evidence — fast.</h1>
-            <p class="lead" data-animate="fade-up" data-delay="120">
-                This view is optimized for hiring: outcomes, strengths, and the projects that prove them.
-            </p>
-            <div class="row" data-animate="fade-up" data-delay="220">
-                <a class="btn primary" href="assets/Proteek_Sanyal_Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
-                <a class="btn" href="developer.html" data-mode="developer">Developer view →</a>
-            </div>
-            </div>
-
-            <div class="section card soft" data-animate="fade-up">
-            <h2>Core strengths</h2>
-            <div class="row">
-                <span class="chip">Data pipelines (Python/SQL)</span>
-                <span class="chip">Cloud patterns (AWS/Azure/GCP)</span>
-                <span class="chip">RAG + retrieval evaluation</span>
-                <span class="chip">Power BI modeling + DAX performance</span>
-                <span class="chip">Automation (SharePoint/Excel workflows)</span>
-            </div>
-            </div>
-
-            <div class="section card soft" data-animate="fade-up">
-            <h2>Experience snapshot</h2>
-            <div class="timeline">
-                <div class="item">
-                <div class="t">Data Engineer / Data Scientist — ICI (2025–Now)</div>
-                <div class="s">Automated pipelines, campaign reporting, ROI insights, stakeholder delivery.</div>
-                </div>
-                <div class="item">
-                <div class="t">AI/Analytics Projects</div>
-                <div class="s">RAG assistants, automation tooling, BI storytelling for operational decisions.</div>
-                </div>
-            </div>
-            </div>
-
-            <div class="section">
-            <h2>Proof via projects</h2>
-            <div class="grid">
-                <div class="project" data-animate="fade-up">
-                <h3>Ask My Work (RAG Portfolio Agent)</h3>
-                <p><b>Signal:</b> AI-native thinking + grounded delivery.</p>
-                <div class="links"><a class="link" href="projects/ask-my-work-rag-agent.html" data-mode="recruiter">Case Study →</a></div>
-                </div>
-
-                <div class="project" data-animate="fade-up" data-delay="120">
-                <h3>Automated Excel Consolidation Engine</h3>
-                <p><b>Signal:</b> reliability, edge cases, automation maturity.</p>
-                <div class="links"><a class="link" href="projects/excel-consolidation-sharepoint-pipeline.html" data-mode="recruiter">Case Study →</a></div>
-                </div>
-
-                <div class="project" data-animate="fade-up" data-delay="220">
-                <h3>Fleet Telemetry: Engine Runtime Storyboard</h3>
-                <p><b>Signal:</b> stakeholder storytelling + model performance.</p>
-                <div class="links"><a class="link" href="projects/fleet-telemetry-engine-runtime-storyboard.html" data-mode="recruiter">Case Study →</a></div>
-                </div>
-            </div>
-            </div>
-
-            <div class="footer">
-            <div>© Proteek Sanyal</div>
-            <div><a class="link" href="contact.html" data-mode="recruiter">Contact</a></div>
-            </div>
-    </div>
-
-
-  <!-- Command Palette -->
-  <div id="pal" class="pal">
-    <div class="palbox">
-      <div class="palhead">
-        <input id="palInput" placeholder="Search projects, pages… (Esc to close)" />
+    <section class="section">
+      <h2>Technical skills</h2>
+      <div class="chips">
+        <span class="chip">Regression</span><span class="chip">Clustering</span><span class="chip">CNN</span><span class="chip">BERT</span><span class="chip">NLP</span>
+        <span class="chip">dbt</span><span class="chip">Azure Databricks</span><span class="chip">Azure Data Factory</span>
+        <span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">CI/CD</span>
+        <span class="chip">PySpark</span><span class="chip">GIS</span><span class="chip">Tableau</span><span class="chip">Power BI</span>
       </div>
-      <div id="palList" class="pallist"></div>
-    </div>
-  </div>
+    </section>
 
-  <script src="assets/script.js"></script>
+    <section class="section">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="panel">
+          <h3>Data Analyst — City of Gold Coast (Jun 2025–Present)</h3>
+          <ul>
+            <li>Power BI dashboards (DAX/Power Query) for asset, compliance, KPI reporting.</li>
+            <li>Automated refresh + distribution with Power Automate (cut manual work ~40%).</li>
+            <li>Integrated data across Azure, SharePoint, internal systems.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Power BI</span><span class="chip">Microsoft Fabric</span><span class="chip">Python</span><span class="chip">SQL</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>ML Engineer — Truuth (Jul 2023–Nov 2024)</h3>
+          <ul>
+            <li>Built/tuned/deployed models with AWS SageMaker for scalability.</li>
+            <li>Developed pipelines for real-time data flow and app integration.</li>
+            <li>Worked in Agile delivery with success metrics + iteration.</li>
+          </ul>
+          <div class="chips"><span class="chip">AWS</span><span class="chip">SageMaker</span><span class="chip">CI/CD</span></div>
+        </div>
+
+        <div class="panel">
+          <h3>Data Scientist/Engineer — ICI (Mar 2025–May 2025)</h3>
+          <ul>
+            <li>Dashboards and automated reports integrating sales/marketing data.</li>
+            <li>ROI and attribution analysis for brands (Flight Centre, ASUS).</li>
+            <li>ETL pipelines using Python/SQL + Adverity.</li>
+          </ul>
+          <div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">AWS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Education</h2>
+      <div class="grid2">
+        <div class="panel">
+          <h3>Macquarie University</h3>
+          <p>Master of Science in Data Science (2022–2024)</p>
+        </div>
+        <div class="panel">
+          <h3>GLA University</h3>
+          <p>B.Tech in Computer Science and Engineering (2011–2015)</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <a class="mini" href="index.html">← Back to portal</a>
+      <span class="dot">•</span>
+      <a class="mini" href="developer.html">Developer view</a>
+    </footer>
+  </main>
+
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
