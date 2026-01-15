@@ -30,94 +30,64 @@
   </nav>
 
   <div class="wrap">
-    <div class="hero">
-      <div class="card" data-animate="fade-up">
-        <div class="h-eyebrow">PORTFOLIO ENTRY</div>
-        <h1 class="reveal" data-animate="reveal">Choose how you want to see my work.</h1>
-        <p class="lead" data-animate="fade-up" data-delay="120">
-          Different visitors need different signals. Pick a lens — each has its own page layout + motion.
-        </p>
+    <div class="wrap landing-wrap">
+      <div class="landing-center">
+        <div class="landing-title" data-animate="fade-up">
+          <div class="h-eyebrow">PORTFOLIO ENTRY</div>
+          <h1 class="reveal" data-animate="reveal">Choose how you want to see my work.</h1>
+          <p class="lead" data-animate="fade-up" data-delay="120">
+            Pick a lens — each cube opens a different experience.
+          </p>
+        </div>
 
-        <div class="cube-stage" data-animate="fade-up" data-delay="220">
-          <button class="cube-wrap" data-mode="looker" data-href="looker.html" aria-label="Looker view">
+        <!-- FULLSCREEN CUBES -->
+        <div class="cube-field" data-animate="fade-up" data-delay="220">
+          <button class="cube-wrap big" data-mode="looker" data-href="looker.html" aria-label="Looker view">
             <div class="cube">
-              <div class="face front"></div>
-              <div class="face back"></div>
-              <div class="face right"></div>
-              <div class="face left"></div>
-              <div class="face top"></div>
-              <div class="face bottom"></div>
+              <div class="face front"></div><div class="face back"></div><div class="face right"></div>
+              <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
             </div>
             <div class="cube-label">
-              <div class="cube-tag">LOOKER</div>
-              <div class="cube-sub">Quick overview</div>
+              <div class="cube-tag">LOOKER</div><div class="cube-sub">Quick overview</div>
             </div>
           </button>
 
-          <button class="cube-wrap" data-mode="recruiter" data-href="recruiter.html" aria-label="Recruiter view">
+          <button class="cube-wrap big" data-mode="recruiter" data-href="recruiter.html" aria-label="Recruiter view">
             <div class="cube">
-              <div class="face front"></div>
-              <div class="face back"></div>
-              <div class="face right"></div>
-              <div class="face left"></div>
-              <div class="face top"></div>
-              <div class="face bottom"></div>
+              <div class="face front"></div><div class="face back"></div><div class="face right"></div>
+              <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
             </div>
             <div class="cube-label">
-              <div class="cube-tag">RECRUITER</div>
-              <div class="cube-sub">Skills + impact</div>
+              <div class="cube-tag">RECRUITER</div><div class="cube-sub">Skills + impact</div>
             </div>
           </button>
 
-          <button class="cube-wrap" data-mode="developer" data-href="developer.html" aria-label="Developer view">
+          <button class="cube-wrap big" data-mode="developer" data-href="developer.html" aria-label="Developer view">
             <div class="cube">
-              <div class="face front"></div>
-              <div class="face back"></div>
-              <div class="face right"></div>
-              <div class="face left"></div>
-              <div class="face top"></div>
-              <div class="face bottom"></div>
+              <div class="face front"></div><div class="face back"></div><div class="face right"></div>
+              <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
             </div>
             <div class="cube-label">
-              <div class="cube-tag">DEVELOPER</div>
-              <div class="cube-sub">Projects only</div>
+              <div class="cube-tag">DEVELOPER</div><div class="cube-sub">Projects only</div>
             </div>
           </button>
 
-          <button class="cube-wrap" data-mode="persona" data-href="persona.html" aria-label="My Persona view">
+          <button class="cube-wrap big" data-mode="persona" data-href="persona.html" aria-label="My Persona view">
             <div class="cube">
-              <div class="face front"></div>
-              <div class="face back"></div>
-              <div class="face right"></div>
-              <div class="face left"></div>
-              <div class="face top"></div>
-              <div class="face bottom"></div>
+              <div class="face front"></div><div class="face back"></div><div class="face right"></div>
+              <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
             </div>
             <div class="cube-label">
-              <div class="cube-tag">MY PERSONA</div>
-              <div class="cube-sub">AI avatar</div>
+              <div class="cube-tag">MY PERSONA</div><div class="cube-sub">AI avatar</div>
             </div>
           </button>
         </div>
-
-        <!-- Portal overlay used for smooth expand -->
-        <div class="cube-portal" id="cubePortal" aria-hidden="true"></div>
-
       </div>
 
-      <div class="vision-panel" data-animate="fade-up" data-delay="140">
-        <div class="vp-title">Quick note</div>
-        <div class="vp-text">
-          Want the fastest path? Use <b>Recruiter</b>. Want architecture + implementation? Use <b>Developer</b>.
-        </div>
-        <div class="vp-sub">Tip: press <span class="kbd">⌘K</span> to navigate instantly.</div>
-      </div>
+      <!-- Portal overlay used for smooth expand -->
+      <div class="cube-portal" id="cubePortal" aria-hidden="true"></div>
     </div>
 
-    <div class="footer">
-      <div>© Proteek Sanyal</div>
-      <div><a class="link" href="#" data-open-palette="1">⌘K</a></div>
-    </div>
   </div>
 
 

@@ -742,3 +742,60 @@ body.enter-persona .wrap{ animation: enterPersona .7s ease both; }
   .cube{ animation: none; }
   .cube-wrap:hover .cube{ transform: rotateX(-18deg) rotateY(28deg); }
 }
+
+/* ---------- Landing: make cubes feel page-covering ---------- */
+.landing-wrap{
+  max-width: none;
+  padding: 36px 18px 44px;
+}
+
+.landing-center{
+  max-width: var(--max);
+  margin: 0 auto;
+  min-height: calc(100vh - 120px);
+  display: grid;
+  align-content: center;
+  gap: 18px;
+}
+
+.landing-title{
+  max-width: 920px;
+}
+
+/* A free-floating field (not in a card) */
+.cube-field{
+  width: 100%;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media(max-width: 980px){ .cube-field{ grid-template-columns: 1fr 1fr; } }
+@media(max-width: 560px){ .cube-field{ grid-template-columns: 1fr; } }
+
+/* Bigger cubes + less “button-like” container */
+.cube-wrap.big{
+  border-radius: 22px;
+  padding: 18px 14px 14px;
+  background: rgba(255,255,255,.03);
+}
+
+/* Make cube itself larger */
+.cube-wrap.big .cube{
+  width: 92px;
+  height: 92px;
+}
+
+/* Update translateZ to match new size */
+.cube-wrap.big .face.front  { transform: translateZ(46px); }
+.cube-wrap.big .face.back   { transform: rotateY(180deg) translateZ(46px); }
+.cube-wrap.big .face.right  { transform: rotateY(90deg) translateZ(46px); }
+.cube-wrap.big .face.left   { transform: rotateY(-90deg) translateZ(46px); }
+.cube-wrap.big .face.top    { transform: rotateX(90deg) translateZ(46px); }
+.cube-wrap.big .face.bottom { transform: rotateX(-90deg) translateZ(46px); }
+
+/* Slightly slower float for “premium” */
+.cube-wrap.big .cube{
+  animation-duration: 4.2s;
+}
