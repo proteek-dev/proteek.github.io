@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Proteek // AI Systems</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Ambient background layers -->
@@ -12,10 +12,9 @@
   <div class="bg-noise"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
   <canvas id="starfield" class="starfield"></canvas>
-
   <nav>
     <div class="nav-inner">
-      <a class="brand brand-link" href="index.html" data-mode="looker" aria-label="Back to homepage">
+      <a class="brand brand-link" href="index.html" data-mode="looker">
         <span class="badge-dot"></span>
         <div>
           <div>PROTEEK <span style="opacity:.7">//</span> PORTFOLIO</div>
@@ -30,19 +29,26 @@
     </div>
   </nav>
 
-  <div class="wrap landing-wrap">
-    <div class="landing-center">
-      <div class="landing-scene">
-        <!-- Spread cubes across the page -->
+  <div class="wrap">
+    <div class="wrap landing-wrap">
+      <div class="landing-center">
+        <div class="landing-title" data-animate="fade-up">
+          <div class="h-eyebrow">PORTFOLIO ENTRY</div>
+          <h1 class="reveal" data-animate="reveal">Choose how you want to see my work.</h1>
+          <p class="lead" data-animate="fade-up" data-delay="120">
+            Pick a lens — each cube opens a different experience.
+          </p>
+        </div>
+
+        <!-- FULLSCREEN CUBES -->
         <div class="cube-scene" data-animate="fade-up" data-delay="220">
           <button class="cube-wrap big pos-1" data-mode="looker" data-href="looker.html" aria-label="Looker view">
             <div class="cube">
               <div class="face front"></div><div class="face back"></div><div class="face right"></div>
               <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
-              <div class="cube-text">LOOKER</div>
             </div>
             <div class="cube-label">
-              <div class="cube-sub">Quick overview</div>
+              <div class="cube-tag">LOOKER</div><div class="cube-sub">Quick overview</div>
             </div>
           </button>
 
@@ -50,10 +56,9 @@
             <div class="cube">
               <div class="face front"></div><div class="face back"></div><div class="face right"></div>
               <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
-              <div class="cube-text">RECRUITER</div>
             </div>
             <div class="cube-label">
-              <div class="cube-sub">Skills + impact</div>
+              <div class="cube-tag">RECRUITER</div><div class="cube-sub">Skills + impact</div>
             </div>
           </button>
 
@@ -61,10 +66,9 @@
             <div class="cube">
               <div class="face front"></div><div class="face back"></div><div class="face right"></div>
               <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
-              <div class="cube-text">DEVELOPER</div>
             </div>
             <div class="cube-label">
-              <div class="cube-sub">Projects only</div>
+              <div class="cube-tag">DEVELOPER</div><div class="cube-sub">Projects only</div>
             </div>
           </button>
 
@@ -72,32 +76,21 @@
             <div class="cube">
               <div class="face front"></div><div class="face back"></div><div class="face right"></div>
               <div class="face left"></div><div class="face top"></div><div class="face bottom"></div>
-              <div class="cube-text">PERSONA</div>
             </div>
             <div class="cube-label">
-              <div class="cube-sub">AI avatar</div>
+              <div class="cube-tag">MY PERSONA</div><div class="cube-sub">AI avatar</div>
             </div>
           </button>
         </div>
 
-        <!-- Headline sits in the center, between cubes -->
-        <div class="landing-title overlay-title" data-animate="fade-up">
-          <div class="h-eyebrow">PORTFOLIO ENTRY</div>
-          <h1 class="reveal" data-animate="reveal">Choose how you want to see my work.</h1>
-          <p class="lead" data-animate="fade-up" data-delay="120">
-            Four lenses. Four experiences. Click a cube to enter.
-          </p>
-        </div>
-
       </div>
+
+      <!-- Portal overlay used for smooth expand -->
+      <div class="cube-portal" id="cubePortal" aria-hidden="true"></div>
     </div>
+
   </div>
 
-  <!-- Portal overlay used for smooth expand -->
-  <div class="cube-portal" id="cubePortal" aria-hidden="true"></div>
-
-  <!-- Page transition overlay (used by mode navigation script) -->
-  <div id="pageTransition" class="page-transition" aria-hidden="true"></div>
 
   <!-- Command Palette -->
   <div id="pal" class="pal">
@@ -109,6 +102,6 @@
     </div>
   </div>
 
-  <script src="assets/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
