@@ -33,6 +33,83 @@
     bottom: { x: 0.0, y: 1.0 },
   };
 
+  function clamp01(v){ return Math.max(0, Math.min(1, v)); }
+
+  // Draw a tiny isometric cube made of 3 faces (top/left/right)
+  function drawIsoCube(ctx, x, y, s, a, tiltX, tiltY) {
+    // tiltX/tiltY are in [-1..1], derived from velocity direction to sell “3D”
+    const tx = tiltX * 0.55;
+    const ty = tiltY * 0.55;
+
+    // isometric-ish offsets
+    const hx = s * (0.9 + tx * 0.2);
+    const hy = s * (0.55 + ty * 0.2);
+    const vz = s * 0.9; // vertical edge length
+
+    // Points (screen space)
+    // Top diamond
+    const p0 = { x: x,       y: y - vz };
+    const p1 = { x: x + hx,  y: y - vz + hy };
+    const p2 = { x: x,       y: y - vz + hy * 2 };
+    const p3 = { x: x - hx,  y: y - vz + hy };
+
+    // Bottom diamond (shifted down)
+    const q0 = { x: x,       y: y };
+    const q1 = { x: x + hx,  y: y + hy };
+    const q2 = { x: x,       y: y + hy * 2 };
+    const q3 = { x: x - hx,  y: y + hy };
+
+    // Face alphas (keep subtle)
+    const topA   = 0.55 * a;
+    const leftA  = 0.35 * a;
+    const rightA = 0.45 * a;
+    const edgeA  = 0.18 * a;
+
+    // TOP face p0-p1-p2-p3
+    ctx.beginPath();
+    ctx.moveTo(p0.x, p0.y);
+    ctx.lineTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+    ctx.lineTo(p3.x, p3.y);
+    ctx.closePath();
+    ctx.fillStyle = `rgba(255,255,255,${topA})`;
+    ctx.fill();
+
+    // RIGHT face p1-q1-q2-p2
+    ctx.beginPath();
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(q1.x, q1.y);
+    ctx.lineTo(q2.x, q2.y);
+    ctx.lineTo(p2.x, p2.y);
+    ctx.closePath();
+    ctx.fillStyle = `rgba(255,255,255,${rightA})`;
+    ctx.fill();
+
+    // LEFT face p3-p2-q2-q3
+    ctx.beginPath();
+    ctx.moveTo(p3.x, p3.y);
+    ctx.lineTo(p2.x, p2.y);
+    ctx.lineTo(q2.x, q2.y);
+    ctx.lineTo(q3.x, q3.y);
+    ctx.closePath();
+    ctx.fillStyle = `rgba(255,255,255,${leftA})`;
+    ctx.fill();
+
+    // Edges
+    ctx.strokeStyle = `rgba(255,255,255,${edgeA})`;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    // top outline
+    ctx.moveTo(p0.x, p0.y); ctx.lineTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.lineTo(p3.x, p3.y); ctx.closePath();
+    // verticals
+    ctx.moveTo(p1.x, p1.y); ctx.lineTo(q1.x, q1.y);
+    ctx.moveTo(p2.x, p2.y); ctx.lineTo(q2.x, q2.y);
+    ctx.moveTo(p3.x, p3.y); ctx.lineTo(q3.x, q3.y);
+    // bottom partial outline
+    ctx.moveTo(q1.x, q1.y); ctx.lineTo(q2.x, q2.y); ctx.lineTo(q3.x, q3.y);
+    ctx.stroke();
+  }
+
   function rand(min, max) { return Math.random() * (max - min) + min; }
 
   function spawnCubelets(x, y, face, amount, strength) {
@@ -44,6 +121,10 @@
       // Direction: random + face bias
       let vx = rand(-1, 1) * 0.7 + b.x * 1.3;
       let vy = rand(-1, 1) * 0.7 + b.y * 1.3;
+
+      const dirLen = Math.hypot(vx, vy) || 1;
+      const tx = vx / dirLen;  // -1..1
+      const ty = vy / dirLen;  // -1..1
 
       // Back face feels “pulled inward” instead of blown out
       if (face === "back") {
@@ -68,6 +149,7 @@
         rot,
         spin,
         shrink: (face === "back") ? rand(0.015, 0.03) : rand(0.004, 0.014),
+        tx, ty
       });
     }
   }
@@ -104,19 +186,13 @@
 
       p.rot += p.spin * dt;
 
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
+      // Slight “billow” wobble
+      const wobble = Math.sin((p.maxLife - p.life) * 0.35 + p.rot) * 0.18;
+      const tiltX = clamp01((p.tx + 1) * 0.5) * 2 - 1; // normalize back to -1..1
+      const tiltY = clamp01((p.ty + 1) * 0.5) * 2 - 1;
 
-      // Colorless “glass cubelets” feel: white with alpha
-      ctx.fillStyle = `rgba(255,255,255,${0.65 * a})`;
-      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      drawIsoCube(ctx, p.x, p.y, p.size, a, tiltX + wobble, tiltY - wobble);
 
-      // Slight edge highlight
-      ctx.strokeStyle = `rgba(255,255,255,${0.25 * a})`;
-      ctx.strokeRect(-p.size / 2, -p.size / 2, p.size, p.size);
-
-      ctx.restore();
     }
 
     requestAnimationFrame(tick);
