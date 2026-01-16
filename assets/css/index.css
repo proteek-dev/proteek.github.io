@@ -5,6 +5,7 @@
   display:grid;
   place-items:center;
   position:relative;
+  z-index: 5;
 }
 
 .portal .hint{
@@ -42,6 +43,8 @@
   width:min(980px, 92vw);
   height:min(520px, 62vh);
   display:block;
+  perspective: 900px;
+  perspective-origin: 50% 50%;
 }
 
 .cube-btn{
@@ -78,8 +81,8 @@
 
 .face{
   position:absolute; inset:0;
-  background: rgba(130,170,255,.16);
-  border:1px solid rgba(255,255,255,.13);
+  background: rgba(130, 170, 255, 0.22);
+  border:1px solid rgba(255,255,255,.22);
   backface-visibility:hidden;
 }
 .face.front{transform: translateZ(70px)}
