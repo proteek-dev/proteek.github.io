@@ -1,68 +1,54 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Persona // Proteek</title>
-  <link rel="stylesheet" href="assets/css/global.css"/>
-  <link rel="stylesheet" href="assets/css/mode.css"/>
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/mode.css" />
 </head>
-
-<body data-mode="persona">
-  <div class="bg-aurora"></div><div class="bg-noise"></div>
-  <div class="cursor-glow" id="cursorGlow"></div>
-  <canvas id="starfield" class="starfield"></canvas>
+<body class="theme theme-persona" data-mode="persona">
+  <div class="bg-aurora"></div>
+  <div class="bg-noise"></div>
   <div class="vignette"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
 
-  <nav>
-    <div class="nav-inner">
-      <a class="brand" href="index.html" data-mode="persona">
-        <span class="badge-dot"></span>
-        <div>
-          <div class="title">PERSONA <span style="opacity:.7">//</span> PROTEEK</div>
-          <small>Future layer — AI self · interaction · presence</small>
-        </div>
-      </a>
-      <div class="nav-actions">
-        <a class="btn" href="looker.html" data-mode="looker">Looker</a>
-        <a class="btn primary" href="contact.html" data-mode="persona">Contact</a>
-      </div>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Back to portal">
+      <span class="brand-dot"></span>
+      <span class="brand-title">PROTEEK <span class="muted">//</span> PERSONA</span>
+      <span class="brand-sub">Future layer</span>
+    </a>
+    <div class="top-actions">
+      <a class="btn" href="looker.html">Looker</a>
+      <a class="btn" href="recruiter.html">Recruiter</a>
+      <a class="btn" href="developer.html">Developer</a>
     </div>
-  </nav>
+  </header>
 
-  <div class="wrap">
-    <div class="hero">
-      <div class="panel"><div class="inner">
-        <div class="h-eyebrow">COMING ONLINE</div>
-        <h1>Interactive persona</h1>
+  <main class="page">
+    <section class="hero compact">
+      <div class="hero-left">
+        <div class="kicker">COMING ONLINE</div>
+        <h1>My AI persona will live here.</h1>
         <p class="lead">
-          This module will become a visual AI interface: ask about projects, experience, architecture — and get guided answers.
+          Next: an interactive avatar + conversational interface that answers about my work, projects, and capabilities.
         </p>
-        <div class="chips">
-          <span class="chip">Avatar</span>
-          <span class="chip">RAG over resume/projects</span>
-          <span class="chip">Voice (later)</span>
-          <span class="chip">3D presence (later)</span>
+        <div class="panel">
+          <p class="muted">
+            Placeholder for now. We’ll wire this to a RAG agent + a visual avatar later.
+          </p>
         </div>
-      </div></div>
+      </div>
+    </section>
 
-      <div class="panel"><div class="inner">
-        <div class="h-eyebrow">FOR NOW</div>
-        <p class="sub">Use Recruiter for the fast hiring signal, or Developer for build-level details.</p>
-        <div class="chips">
-          <a class="chip" href="recruiter.html" data-mode="recruiter">Recruiter</a>
-          <a class="chip" href="developer.html" data-mode="developer">Developer</a>
-        </div>
-      </div></div>
-    </div>
+    <footer class="footer">
+      <a class="mini" href="index.html">← Back to portal</a>
+    </footer>
+  </main>
 
-    <div class="footer">
-      <div>© Proteek Sanyal</div>
-      <div><a href="index.html" data-mode="persona">Portal</a></div>
-    </div>
-  </div>
-
-  <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
